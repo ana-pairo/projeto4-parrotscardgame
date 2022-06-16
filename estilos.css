@@ -56,13 +56,33 @@ body {
   align-items: center;
   justify-content: center;
   margin: 0 10px;
+  position: relative;
 }
 
-.card img {
+.card .front {
     width: 100px;
     height: 100px;
-
+    position: absolute;
+    top: 50% -50px;
 }
+
+.front.hidden {
+    visibility: hidden;
+}
+
+.card .back {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50% -50px;
+    visibility: hidden;
+}
+
+.back.appear {
+    visibility: visible;
+}
+
+
 
 
 @media (max-width: 1000px) {
