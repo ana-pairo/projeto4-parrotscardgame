@@ -17,7 +17,7 @@ let mesa = document.querySelector(".cards");
 
 for(let i=0; i<numeroDeCartas/2; i++) {
     let distribuindo = `
-    <div class = "card">  <img class="front" src="./Arquivos Úteis - Projeto 04 - Parrot Card Game/front.png" /> <img class="back appear" src="./Arquivos Úteis - Projeto 04 - Parrot Card Game/${i}.gif" /></div>
+    <div onclick="clicada(this)" class = "card">  <img class="front" src="./Arquivos Úteis - Projeto 04 - Parrot Card Game/front.png" /> <img class="back imagem${i}" src="./Arquivos Úteis - Projeto 04 - Parrot Card Game/${i}.gif" /></div>
     `
     minhaArray.push(distribuindo);
     minhaArray.push(distribuindo);
@@ -30,5 +30,21 @@ for(let i=0; i<numeroDeCartas/2; i++) {
  console.log(minhaArray.join(""))
 
  mesa.innerHTML = minhaArray.join("");
+
+
+
+ function clicada(elementoDiv) {
+
+
+    if (elementoDiv.querySelector("appear")==null){
+        elementoDiv.classList.add("virada")
+        let gif = elementoDiv.querySelector(".back");
+        let parrotFront = elementoDiv.querySelector(".front");
+        parrotFront.classList.add("hidden")
+        setTimeout(function(){
+            gif.classList.add("appear");
+        },1000);
+    }
+ }
 
 

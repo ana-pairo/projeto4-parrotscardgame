@@ -57,7 +57,14 @@ body {
   justify-content: center;
   margin: 0 10px;
   position: relative;
+
+  transition: transform 2s;
 }
+
+.card.virada {
+    transform: rotateY(180deg);
+}
+
 
 .card .front {
     width: 100px;
@@ -68,6 +75,7 @@ body {
 
 .front.hidden {
     visibility: hidden;
+    transition: .5s;
 }
 
 .card .back {
@@ -78,8 +86,10 @@ body {
     visibility: hidden;
 }
 
+
+
 .back.appear {
-    visibility: visible;
+   visibility: visible;
 }
 
 
