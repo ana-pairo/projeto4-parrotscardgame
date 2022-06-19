@@ -2,8 +2,9 @@ function comparador() {
 	return Math.random() - 0.5; 
 }
 
+contador = 0;
 
-let numeroDeCartas = prompt("De 0 a 14, com cartas você deseja jogar?")
+let numeroDeCartas = prompt("De 4 a 14, com cartas você deseja jogar?")
 
 while(numeroDeCartas%2!==0 || numeroDeCartas < 4 || numeroDeCartas >14) {
     numeroDeCartas = prompt("Por favor, digite um número par entre 4 e 14");
@@ -35,14 +36,14 @@ for(let i=0; i<numeroDeCartas/2; i++) {
 
     if (elementoDiv.classList.contains("virada")==false && elementoDiv.classList.contains("acerto")== false && elementoDiv.classList.contains("primeira") == false && document.querySelector(".segunda")==null){
 
+        contador ++;
 
         elementoDiv.classList.add("virada")
         let gif = elementoDiv.querySelector(".back");
         let parrotFront = elementoDiv.querySelector(".front");
         parrotFront.classList.add("hidden")
-        // setTimeout(function(){
-            gif.classList.add("appear");
-        // },1000);
+        gif.classList.add("appear");
+      
 
       
         if (document.querySelector(".primeira") == null){
@@ -71,7 +72,16 @@ for(let i=0; i<numeroDeCartas/2; i++) {
                 
             }
 
-        }        
+            setTimeout(function(){
+                if(document.querySelectorAll(".virada").length == numeroDeCartas){
+                    alert(`Você ganhou em ${contador} jogadas!`);
+                }
+            }, 1500)
+
+
+
+        }   
+
 
     
     }

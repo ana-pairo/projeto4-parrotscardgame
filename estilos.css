@@ -72,7 +72,7 @@ body {
     position: absolute;
     top: 50% -50px;
     visibility: visible;
-    transition-delay: 1s;
+    transition-delay: .5s;
 }
 
 .front.hidden {
@@ -86,13 +86,15 @@ body {
     position: absolute;
     top: 50% -50px;
     visibility: hidden;
+
+   transition-delay: .5s;
 }
 
 
 
 .back.appear {
 
-   transition-delay: 1s;
+   transition-delay: .7s;
    visibility: visible;
 }
 
