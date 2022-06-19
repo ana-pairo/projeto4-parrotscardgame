@@ -2,35 +2,37 @@ function comparador() {
 	return Math.random() - 0.5; 
 }
 
-contador = 0;
+let contador = 0;
+let ganhou = false;
+let numeroDeCartas = 0;
 
-let numeroDeCartas = prompt("De 4 a 14, com cartas você deseja jogar?")
+comecar();
 
-while(numeroDeCartas%2!==0 || numeroDeCartas < 4 || numeroDeCartas >14) {
-    numeroDeCartas = prompt("Por favor, digite um número par entre 4 e 14");
+function comecar(){
+
+    numeroDeCartas = prompt("De 4 a 14, com cartas você deseja jogar?");
+
+    while(numeroDeCartas%2!==0 || numeroDeCartas < 4 || numeroDeCartas >14) {
+        numeroDeCartas = prompt("Por favor, digite um número par entre 4 e 14");
+    }
+
+    let minhaArray = [];
+
+    let mesa = document.querySelector(".cards");
+        mesa.innerHTML="";
+
+    for(let i=0; i<numeroDeCartas/2; i++) {
+        let distribuindo = `
+        <div onclick="clicada(this)" class = "card">  <img class="front" src="./Arquivos Úteis - Projeto 04 - Parrot Card Game/front.png" /> <img class="back imagem${i}" src="./Arquivos Úteis - Projeto 04 - Parrot Card Game/${i}.gif" /></div>
+        `
+        minhaArray.push(distribuindo);
+        minhaArray.push(distribuindo);
+    }
+
+    minhaArray.sort(comparador);
+
+    mesa.innerHTML = minhaArray.join("");
 }
-
-let minhaArray = [];
-
-let mesa = document.querySelector(".cards");
-    mesa.innerHTML="";
-
-for(let i=0; i<numeroDeCartas/2; i++) {
-    let distribuindo = `
-    <div onclick="clicada(this)" class = "card">  <img class="front" src="./Arquivos Úteis - Projeto 04 - Parrot Card Game/front.png" /> <img class="back imagem${i}" src="./Arquivos Úteis - Projeto 04 - Parrot Card Game/${i}.gif" /></div>
-    `
-    minhaArray.push(distribuindo);
-    minhaArray.push(distribuindo);
-
-    
-
- }
-
- minhaArray.sort(comparador);
-
- mesa.innerHTML = minhaArray.join("");
-
-
 
  function clicada(elementoDiv) {
 
@@ -44,8 +46,6 @@ for(let i=0; i<numeroDeCartas/2; i++) {
         parrotFront.classList.add("hidden")
         gif.classList.add("appear");
       
-
-      
         if (document.querySelector(".primeira") == null){
             elementoDiv.classList.add("primeira");
         }
@@ -53,38 +53,39 @@ for(let i=0; i<numeroDeCartas/2; i++) {
             elementoDiv.classList.add("segunda");
 
             if (document.querySelector(".primeira >img:nth-child(2)").src == document.querySelector(".segunda >img:nth-child(2)").src) {
-               document.querySelector(".primeira").classList.remove("primeira");
-               document.querySelector(".segunda").classList.remove("segunda");
+                document.querySelector(".primeira").classList.remove("primeira");
+                document.querySelector(".segunda").classList.remove("segunda");
             }
             else {
                 setTimeout(function(){ 
-                        document.querySelector(".primeira .back").classList.remove("appear");
-                document.querySelector(".segunda .back").classList.remove("appear");
+                    document.querySelector(".primeira .back").classList.remove("appear");
+                    document.querySelector(".segunda .back").classList.remove("appear");
    
-                   document.querySelector(".primeira .front").classList.remove("hidden");
-                document.querySelector(".segunda .front").classList.remove("hidden");
+                    document.querySelector(".primeira .front").classList.remove("hidden");
+                    document.querySelector(".segunda .front").classList.remove("hidden");
    
-                   document.querySelector(".primeira").classList.remove("virada", "primeira");
-                 document.querySelector(".segunda").classList.remove("virada", "segunda");
-                }, 2000)
-           
-                
-                
+                    document.querySelector(".primeira").classList.remove("virada", "primeira");
+                    document.querySelector(".segunda").classList.remove("virada", "segunda");
+                }, 2000)                
             }
 
+            ganhou = document.querySelectorAll(".virada").length == numeroDeCartas;
+
             setTimeout(function(){
-                if(document.querySelectorAll(".virada").length == numeroDeCartas){
+                if(ganhou){
                     alert(`Você ganhou em ${contador} jogadas!`);
+                    let resposta = prompt("Gostaria de reiniciar a partida?");
+
+                    while(resposta !== "sim" && resposta !== "não") {
+                        resposta = prompt("Gostaria de reiniciar a partida? Por favor, digite 'sim' ou 'não'.");
+                    }
+                    if(resposta == "sim"){
+                        comecar();
+                    }
                 }
-            }, 1500)
-
-
-
+            }, 1700)
         }   
-
-
-    
     }
- }
+}
 
 
