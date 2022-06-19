@@ -8,7 +8,6 @@ let numeroDeCartas = prompt("De 0 a 14, com cartas você deseja jogar?")
 while(numeroDeCartas%2!==0 || numeroDeCartas < 4 || numeroDeCartas >14) {
     numeroDeCartas = prompt("Por favor, digite um número par entre 4 e 14");
 }
-console.log(numeroDeCartas)
 
 let minhaArray = [];
 
@@ -27,7 +26,6 @@ for(let i=0; i<numeroDeCartas/2; i++) {
  }
 
  minhaArray.sort(comparador);
- console.log(minhaArray.join(""))
 
  mesa.innerHTML = minhaArray.join("");
 
@@ -35,15 +33,47 @@ for(let i=0; i<numeroDeCartas/2; i++) {
 
  function clicada(elementoDiv) {
 
+    if (elementoDiv.classList.contains("virada")==false && elementoDiv.classList.contains("acerto")== false && elementoDiv.classList.contains("primeira") == false && document.querySelector(".segunda")==null){
 
-    if (elementoDiv.querySelector("appear")==null){
+
         elementoDiv.classList.add("virada")
         let gif = elementoDiv.querySelector(".back");
         let parrotFront = elementoDiv.querySelector(".front");
         parrotFront.classList.add("hidden")
-        setTimeout(function(){
+        // setTimeout(function(){
             gif.classList.add("appear");
-        },1000);
+        // },1000);
+
+      
+        if (document.querySelector(".primeira") == null){
+            elementoDiv.classList.add("primeira");
+        }
+        else {
+            elementoDiv.classList.add("segunda");
+
+            if (document.querySelector(".primeira >img:nth-child(2)").src == document.querySelector(".segunda >img:nth-child(2)").src) {
+               document.querySelector(".primeira").classList.remove("primeira");
+               document.querySelector(".segunda").classList.remove("segunda");
+            }
+            else {
+                setTimeout(function(){ 
+                        document.querySelector(".primeira .back").classList.remove("appear");
+                document.querySelector(".segunda .back").classList.remove("appear");
+   
+                   document.querySelector(".primeira .front").classList.remove("hidden");
+                document.querySelector(".segunda .front").classList.remove("hidden");
+   
+                   document.querySelector(".primeira").classList.remove("virada", "primeira");
+                 document.querySelector(".segunda").classList.remove("virada", "segunda");
+                }, 2000)
+           
+                
+                
+            }
+
+        }        
+
+    
     }
  }
 

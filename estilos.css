@@ -71,11 +71,13 @@ body {
     height: 100px;
     position: absolute;
     top: 50% -50px;
+    visibility: visible;
+    transition-delay: 1s;
 }
 
 .front.hidden {
-    visibility: hidden;
-    transition: .5s;
+   transition-delay: .5s;
+   visibility : hidden;
 }
 
 .card .back {
@@ -89,6 +91,8 @@ body {
 
 
 .back.appear {
+
+   transition-delay: 1s;
    visibility: visible;
 }
 
@@ -96,12 +100,12 @@ body {
 
 
 @media (max-width: 1000px) {
+
     body {
-        width: 100%;
+        width:100%
     }
 
     .name{
-        height: 200px;
         justify-content: center;
         align-items: center;
         text-align: center;
@@ -124,4 +128,18 @@ body {
     .card {
         margin: 5px;
     }
+}
+
+@media (max-width: 540px) {
+    .name{
+        height: 150px;    
+    }
+
+}
+
+@media (max-width: 316px) {
+    .name{
+        height: 200px;
+    }
+
 }
