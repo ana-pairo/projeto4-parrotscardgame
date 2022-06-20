@@ -34,6 +34,18 @@ body {
     justify-content: center;
 }
 
+.cronometro {
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #75b79e;
+    font-weight: 700;
+    font-size: 25px;
+    margin: 15px 0;
+}
+
 .cards {
     width: 100%;
     height: 100%;
